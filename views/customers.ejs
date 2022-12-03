@@ -1,0 +1,81 @@
+<%- include("includes/header") -%>
+    <ul class="navbar-nav ml-auto mt-10">
+        <li class="nav-item">
+            <a class="nav-link text-white add-button" href="ad-customer.html"><i class="fa fa-plus-circle"></i> Add
+                Customer</a>
+        </li>
+    </ul>
+    </div>
+    </nav>
+    </div>
+    </div>
+    </div>
+    </section>
+
+<section class="hero-area bg-6 text-center overly">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content-block">
+                    <br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>   
+<section class="dashboard section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 offset-md-60 col-lg-40 offset-lg-60">
+                    <div class="widget dashboard-container my-adslist">
+                        <h2 class="search-result bg-gray">CUSTOMERS DETAILS</h2>
+                        <table class="table table-responsive product-dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Customer Description</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (var i=0; i<customers.length; i++) { %>
+                                    <tr>
+                                        <td class="product-details">
+                                            <h3 class="title">
+                                                <%= customers[i]['Name']%>
+                                            </h3>
+                                            <span class="add-id"><strong>Customer ID</strong>
+                                                <%= customers[i]['Customer_ID']%>
+                                            </span><br>
+                                            <span class="status active"><strong>IG Handle</strong>
+                                                <a class="status active" href="https://www.instagram.com/<%= customers[i]['Instagram_Handle']%>/"><%= customers[i]['Instagram_Handle']%></a>
+                                            </span><br>
+                                            <span class="location"><strong>Address</strong>
+                                                <%= customers[i]['Address']%>
+                                            </span><br>
+                                            <span class="location"><strong>Contact</strong>
+                                                <%= customers[i]['Contact']%>
+                                            </span><br>
+                                            <span class="location"><strong>Email ID</strong>
+                                                <%= customers[i]['Email_ID']%>
+                                            </span>
+                                        </td>
+                                        <td class="action" data-title="Action">
+                                            <div class="">
+                                                <ul class="list-inline justify-content-center">
+                                                    
+                                                    <a href="edit-customer.html/<%= customers[i]['Customer_ID']%>" class="button2"><i class="fa fa-pencil"></i></a>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <%}%>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <%- include("includes/footer") -%>

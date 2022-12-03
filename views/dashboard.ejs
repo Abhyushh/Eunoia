@@ -1,0 +1,116 @@
+<%- include("includes/header") -%>
+    <ul class="navbar-nav ml-auto mt-10">
+        <li class="nav-item">
+            <a class="nav-link text-white add-button" href="ad-orders.html"><i class="fa fa-plus-circle"></i> Add
+                Orders</a>
+        </li>
+    </ul>
+    </div>
+    </nav>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <section class="hero-area bg-5 text-center overly">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content-block">
+                        <br><br><br><br><br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="dashboard section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 offset-md-60 col-lg-40 offset-lg-60">
+                    <div class="widget dashboard-container my-adslist">
+                        <h2 class="search-result bg-gray">CURRENT ORDERS </h2>
+                        <% for (var i=0; i<orders.length; i++) { %>
+                            <table class="table table-responsive product-dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th><b>&nbsp;&nbsp;Order : &nbsp;<%= i + 1%></b></th>
+                                        <th class="text-center" data-title="Action">
+                                            <div class="col-md-20 offset-md-10 col-lg-1 offset-lg-6">
+                                                <a href="/edit-orders.html/<%= orders[i]['Order_ID']%>"><i
+                                                        class="fa fa-pencil"></i></a>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <table class="table table-responsive product-dashboard-table">
+                                <td class="product-details">
+                                    <span class=""><strong>Order ID:</strong>
+                                        <%= orders[i]['Order_ID']%>
+                                    </span><br>
+                                    <span><strong>Order Date: </strong><time>
+                                            <%= orders[i]['Order_Date']%>
+                                        </time></span><br>
+                                    <span class=""><strong>Order Amount:</strong>
+                                        <%= orders[i]['Amount']%>
+                                    </span><br>
+                                    <span class=""><strong>Name: </strong>
+                                        <%= orders[i]['Name']%>
+                                    </span><br>
+                                    <span class="location"><strong>Delivery Address: </strong>
+                                        <%= orders[i]['Delivery_Address']%>
+                                    </span><br>
+                                    <span class="status active"><strong>Order Status: </strong>
+                                        <%= orders[i]['Order_Status']%>
+                                    </span><br>
+                                    <span class=""><strong>Payment Mode: </strong>
+                                        <%= orders[i]['Payment_Mode']%>
+                                    </span><br>
+                                    <span class=""><strong>Payment Date: </strong><time>
+                                            <%= orders[i]['Payment_Date']%>
+                                        </time></span>
+                                </td>
+                            </table>
+                            <% for (var j=0; j<items.length; j++) { %>
+                                <% if( orders[i]['Order_ID']===items[j]['Order_ID'] ) { %>
+                                    <table class="table table-responsive product-dashboard-table">
+                                        <tr>
+                                            <td class="product-details">
+                                                <h3 class="title">
+                                                    <%= items[j]['Type']%>
+                                                </h3>
+                                                <span class="add-id"><strong>Item ID:</strong>
+                                                    <%= items[j]['Item_ID']%>
+                                                </span><br>
+
+                                                <span class="add-id"><strong>Item Price:</strong>
+                                                    <%= items[j]['Price']%>
+                                                </span><br>
+                                            </td>
+                                            <td class="action" data-title="Action">
+                                                <div class="col-md-1 offset-md-0 col-lg-0 offset-lg-0">
+                                                    <ul class="list-inline justify-content-center">
+                                                        <form action="/dashboard.html" method="POST">
+                                                            <input type="hidden" name="oid" id="oid"
+                                                                value="<%= orders[i]['Order_ID']%>">
+                                                            <input type="hidden" name="id" id="id"
+                                                                value="<%= items[j]['Item_ID']%>">
+                                                            <input type="hidden" name="amt" id="amt"
+                                                                value="<%= items[j]['Price']%>">
+                                                            <button type="submit" class="button1"><i
+                                                                    class="fa fa-trash"></i></button>
+                                                        </form>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <%}%>
+                                        <%}%>
+                                            <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%- include("includes/footer") -%>

@@ -1,0 +1,133 @@
+<%- include("includes/header") -%>
+    <ul class="navbar-nav ml-auto mt-10">
+        <li class="nav-item">
+            <a class="nav-link text-white add-button" href="ad-listing.html"><i class="fa fa-plus-circle"></i> Add
+                Items</a>
+        </li>
+    </ul>
+    </div>
+    </nav>
+    </div>
+    </div>
+    </div>
+    </section>
+    </section>
+    <section class="section-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="search-result bg-gray">
+                        <h2>Inventory</h2>
+                        <p><%= inventory.length %> Items on 31 May, 2021</p>
+                    </div>
+                </div>
+            </div>
+            <form action='/category.html' method="POST">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="category-sidebar">
+                            <div class="widget filter">
+                                <h4 class="widget-header">Sort Produts</h4>
+                                <select name="sort" id="sort">
+                                    <option value="Lowest Price">Lowest to Highest</option>
+                                    <option value="Highest Price">Highest to Lowest</option>
+                                </select><br><br>
+                            </div>
+
+                            <div class="widget price-range w-100">
+                                <h4 class="widget-header">By Price Range</h4>
+                                <div class="block">
+                                    <input class="range-track w-100" type="text" data-slider-min="100"
+                                        data-slider-max="5000" data-slider-step="500" data-slider-value="[100,5000]"
+                                        id="range" name="range">
+                                    <div class="d-flex justify-content-between mt-2">
+                                        <span class="value">₹100 - ₹5000</span><br><br><br>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget product-shorting">
+                                <h4 class="widget-header">By Condition</h4>
+                                <select name="condition" id="condition">
+                                    <option value="Pre-Owned">Pre-Owned&nbsp;</option>
+                                    <option value="New">New</option>
+                                    <option value="Defected">Defected</option>
+                                </select>
+                            </div>
+                            <ul class="list-inline mt-20">
+                                <li class="list-inline-item">
+                                    <button type="reset" class="btn btn-primary d-block mt-2" onclick="window.location.href='category.html';">Reset</button>
+                                </li>
+                                <li class="list-inline-item"><button type="submit" class="btn btn-primary d-block mt-2">Apply</button></li>
+                            </ul>
+                          </div>
+                    </div>
+            </form>
+            <div class="col-md-9">
+                <div class="category-search-filter">
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="view">
+                                <strong>Views</strong>
+                                <ul class="list-inline view-switcher">
+                                    <li class="list-inline-item">
+                                        <a href="#" onclick="event.preventDefault();" class="text-info"><i
+                                                class="fa fa-th-large"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-grid-list">
+                    <div class="row mt-30">
+                        <% for (var i=0; i<inventory.length; i++) { %>
+                            <div class="col-sm-12 col-lg-4 col-md-6">
+                                <div class="product-item bg-light">
+                                    <div class="card">
+                                        <div class="thumb-content">
+                                            <a href="edit-inventory.html/<%= inventory[i]['Item_ID']%>">
+                                                <img class="card-img-top img-fluid"
+                                                    src="<%= inventory[i]['IG_Link']%>" alt="Card image cap">
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title"><a href="edit-inventory.html/<%= inventory[i]['Item_ID']%>">
+                                                    <%= inventory[i]['Type']%>
+                                                </a>
+                                            </h4>
+                                            <ul class="list-inline product-meta">
+                                                <li class="list-inline-item">
+                                                    <a href="#"><i class="fa fa-list-ul"></i>
+                                                        <%= inventory[i]['Item_ID']%>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="edit-inventory.html/<%= inventory[i]['Item_ID']%>"><i class="fa fa-tags"></i>
+                                                        <%= inventory[i]['Status']%>
+                                                    </a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#"><i class="fa fa-rupee"></i>
+                                                        <%= inventory[i]['Price']%>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <p class="card-text">
+                                                <%= inventory[i]['Item_condition']%>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <%- include("includes/footer") -%>
